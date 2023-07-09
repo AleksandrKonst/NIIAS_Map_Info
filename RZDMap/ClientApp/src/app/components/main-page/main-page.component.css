@@ -1,0 +1,17 @@
+.h-px-wide {
+    width: 60%;
+    margin: 10px auto 10px auto;
+}
+
+.col{
+    text-align: center;
+}
+
+.row{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.container{
+    margin-top: 50px;
+}
