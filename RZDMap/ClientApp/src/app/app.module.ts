@@ -6,9 +6,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { MapComponent } from './components/map/map.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import {AppRoutingModule} from "./app-routing.module";
+import { MainPageComponent } from './components/main-page/main-page.component';
 @NgModule({
-    imports:      [ BrowserModule, FormsModule, HttpClientModule ],
-    declarations: [ AppComponent, HeaderComponent, MapComponent, FooterComponent ],
+    imports:      [ BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
+    declarations: [ AppComponent, HeaderComponent, MapComponent, FooterComponent, MainPageComponent ],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
