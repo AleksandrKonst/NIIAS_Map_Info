@@ -82,6 +82,7 @@ export class MapComponent implements OnInit{
         <p>Долгота - ${station.lon}</p>
         <p>user - ${station.user}</p>
         <button type="button" class="btn btn-danger">Инфо</button>
+        <button type="button" class="btn btn-secondary">Маршруты</button>
       `;
 
       marker.bindPopup(popupContent);
