@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using RZDMapRailwaysApi.Models;
 
 namespace RZDMapRailwaysApi.Data;
 
-public partial class GeoNiiasContext : DbContext
+public partial class GeoNiiasContext : IdentityDbContext<IdentityUser>
 {
     public GeoNiiasContext(DbContextOptions<GeoNiiasContext> options) : base(options)
     {
@@ -31,7 +33,7 @@ public partial class GeoNiiasContext : DbContext
             entity.Property(e => e.User).HasColumnName("user");
         });
 
-        OnModelCreatingPartial(modelBuilder);
+        base.OnModelCreating(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

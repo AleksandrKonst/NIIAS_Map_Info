@@ -1,0 +1,14 @@
+<div class="login-box">
+    <h1>Login Form</h1>
+    <div class="form-outline mb-4">
+        <input id="form2Example1" class="form-control" [(ngModel)]="username"/>
+        <label class="form-label" for="form2Example1">Login address</label>
+    </div>
+
+    <div class="form-outline mb-4">
+        <input type="password" id="form2Example2" class="form-control" [(ngModel)]="password"/>
+        <label class="form-label" for="form2Example2">Password</label>
+    </div>
+
+    <button (click)="login()" class="btn btn-danger btn-block mb-4">Register in</button>
+</div>

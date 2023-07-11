@@ -8,9 +8,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import {AppRoutingModule} from "./app-routing.module";
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 @NgModule({
     imports:      [ BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
-    declarations: [ AppComponent, HeaderComponent, MapComponent, FooterComponent, MainPageComponent ],
+    declarations: [ AppComponent, HeaderComponent, MapComponent, FooterComponent, MainPageComponent, LoginComponent, RegisterComponent ],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
