@@ -1,6 +1,6 @@
 # NIIAS_Map_Info
 Информационная карта для НИИАС
 
-![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/3285535e-d585-4f1b-9a18-338eddc84e51)
+![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/85a34a04-cc33-400f-aa66-c71700df8b79)
 
-![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/bbeddafb-6211-40e2-8df2-6ea64c38ea6c)
+![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/cb90ac87-dff3-4268-a45a-515926a80b5b)
