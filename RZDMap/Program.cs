@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<GeoNiiasContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("TicketContext")));
+
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => 
     {
         if (builder.Environment.IsDevelopment())
@@ -23,6 +24,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     })
     .AddEntityFrameworkStores<GeoNiiasContext>()
     .AddDefaultTokenProviders();
+
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddControllers();
 builder.Services.AddApiVersioning();

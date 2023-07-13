@@ -3,6 +3,7 @@ import {DataService} from "../../Service/data.service";
 import {Station} from "../../Model/Station";
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
+import {GeoJSON, GeoJSONOptions} from "leaflet";
 
 @Component({
   selector: 'app-map',
@@ -89,6 +90,6 @@ export class MapComponent implements OnInit{
       markers.addLayer(marker);
     });
 
-    this.map.addLayer(markers);
+    this.map.addLayer(markers)
   }
 }

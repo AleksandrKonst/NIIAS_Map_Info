@@ -1,23 +1,27 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
-
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user: any = null;
+  login: boolean = false;
 
   constructor(private http: HttpClient) {
 
   }
-  
+
+  loggedIn(): boolean {
+        return this.login;
+  }
   async loadUser(){
       const user = await firstValueFrom(
           this.http.get<any>("/api/user")
       )
-      if('user_id' in user) {
+      if('http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name' in user) {
           this.user = user
+          this.login = true
       }
       return user;
   }

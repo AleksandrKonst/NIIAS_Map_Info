@@ -7,7 +7,7 @@ import {AuthService} from "../../Service/auth.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(private auth: AuthService) {
+  constructor(public auth: AuthService) {
   }
   
   username: any;

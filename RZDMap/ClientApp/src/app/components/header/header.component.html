@@ -11,18 +11,18 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="">Главная</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="auth.loggedIn()">
                     <a class="nav-link active" aria-current="page" routerLink="/map">Карта</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="auth.loggedIn()">
                     <a class="nav-link active" aria-current="page" routerLink="/route">Участки</a>
                 </li>
             </ul>
             <form class="d-flex">
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="button" class="btn btn-outline-danger" (click)="logout()">Logout {{username}}</button>
-                    <button type="button" class="btn btn-outline-danger" routerLink="/login">Войти</button>
-                    <button type="button" class="btn btn-outline-secondary" routerLink="/register">Регистрация</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="logout()" *ngIf="auth.loggedIn()">Logout {{username}}</button>
+                    <button type="button" class="btn btn-outline-danger" routerLink="/login" *ngIf="!auth.loggedIn()">Войти</button>
+                    <button type="button" class="btn btn-outline-secondary" routerLink="/register" *ngIf="!auth.loggedIn()">Регистрация</button>
                 </div>
             </form>
         </div>
