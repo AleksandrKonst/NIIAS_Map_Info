@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {DataService} from "../../Service/data.service";
 import {Station} from "../../Model/Station";
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import {AlertService} from "ngx-alerts";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-map',
@@ -14,7 +15,7 @@ export class MapComponent implements OnInit{
   private map: any;
   private stations: Station[] = []
   
-  constructor(private dataService: DataService, private alertService: AlertService,) { }
+  constructor(private dataService: DataService, private alertService: AlertService, private elementRef: ElementRef, private router: Router) { }
 
   loadStations() {
     this.alertService.danger('Загрузка станций');
@@ -83,14 +84,22 @@ export class MapComponent implements OnInit{
         <p>Широта - ${station.lat}</p>
         <p>Долгота - ${station.lon}</p>
         <p>user - ${station.user}</p>
-        <button type="button" class="btn btn-danger">Инфо</button>
+        <button type="button" class="btn btn-danger info">Инфо</button>
         <button type="button" class="btn btn-secondary">Маршруты</button>
       `;
 
-      marker.bindPopup(popupContent);
+      marker.bindPopup(popupContent).on("popupopen", e => {
+        this.elementRef.nativeElement
+            .querySelector(".info")
+            .addEventListener("click", () => {
+              this.deleteArtwork(station.esr);
+            });
+      });
       markers.addLayer(marker);
     });
-
     this.map.addLayer(markers)
+  }
+  deleteArtwork(esr:number) {
+    this.router.navigate(['/station/' + esr]);
   }
 }

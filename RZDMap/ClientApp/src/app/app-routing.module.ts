@@ -4,6 +4,7 @@ import {MapComponent} from "./components/map/map.component";
 import {MainPageComponent} from "./components/main-page/main-page.component";
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
+import {StationInfoComponent} from "./components/station-info/station-info.component";
 
 const appRoutes: Routes =[
   { path: '', component: MainPageComponent},
@@ -12,7 +13,8 @@ const appRoutes: Routes =[
   { path: 'privacy', component: MainPageComponent},
   { path: 'about', component: MainPageComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent}
+  { path: 'register', component: RegisterComponent},
+  { path: 'station/:id', component: StationInfoComponent }
 ];
 
 @NgModule({
