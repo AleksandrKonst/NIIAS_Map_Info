@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace RZDMapRailwaysApi.Models;
+﻿namespace RZDMap.Models;
 
 public partial class Station
 {

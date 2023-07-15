@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RZDMapRailwaysApi.DTO;
+namespace RZDMap.DTO;
 
 public class StationDto
 {

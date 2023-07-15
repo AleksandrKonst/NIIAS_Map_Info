@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using RZDMapRailwaysApi.Models;
+using RZDMap.DTO;
+using RZDMap.Models;
 
 namespace RZDMapRailwaysApi.DTO.AutoMapperProfiles;
 

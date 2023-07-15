@@ -1,37 +1,70 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
-using RZDMap.Endpoints;
-using RZDMapRailwaysApi.Data;
-using RZDMapRailwaysApi.Services;
+using Microsoft.IdentityModel.Tokens;
+using RZDMap.Data;
+using RZDMap.Services;
+using RZDMap.Services.Token;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<GeoNiiasContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("TicketContext")));
+builder.Services.AddAutoMapper(typeof(Program));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt => 
     {
-        if (builder.Environment.IsDevelopment())
         {
-            options.User.RequireUniqueEmail = false;
-            options.Password.RequireDigit = false;
-            options.Password.RequiredLength = 6;
-            options.Password.RequireLowercase = false;
-            options.Password.RequireUppercase = false;
-            options.Password.RequireNonAlphanumeric = false;
+            opt.Password.RequireDigit = false;
+            opt.Password.RequireLowercase = false;
+            opt.Password.RequireNonAlphanumeric = false;
+            opt.Password.RequireUppercase = false;
+            opt.Password.RequiredLength = 4;
+            opt.User.RequireUniqueEmail = true;
         }
     })
-    .AddEntityFrameworkStores<GeoNiiasContext>()
-    .AddDefaultTokenProviders();
+    .AddEntityFrameworkStores<GeoNiiasContext>();
 
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAuthentication(cfg =>
+{
+    cfg.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    cfg.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Token:Key"])),
+        ValidIssuer = builder.Configuration["Token:Issuer"],
+        ValidateIssuer = true,
+        ValidateAudience = false,
+    };
+});
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ManagerDevelopers", md =>
+    {
+        md.RequireClaim("jobtitle", "developer");
+        md.RequireRole("Manager");
+    });
+    options.AddPolicy("AdminDevelopers", ad =>
+    {
+        ad.RequireClaim("jobtitle", "developer");
+        ad.RequireRole("Administrator");
+    });
+});
+
 builder.Services.AddControllers();
 builder.Services.AddApiVersioning();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddHealthChecks();
 
-builder.Services.AddAuthorization();
+builder.Services.AddScoped<IJWTTokenGenerator, JWTTokenGenerator>();
 builder.Services.AddTransient<IStationService, StationService>();
+
 builder.Services.AddSpaStaticFiles(configuration =>
 {
     configuration.RootPath = "ClientApp/dist";
@@ -39,20 +72,19 @@ builder.Services.AddSpaStaticFiles(configuration =>
 
 var app = builder.Build();
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 app.UseRouting();
+app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
+
 #pragma warning disable ASP0014
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapControllers().RequireAuthorization();
-    endpoints.MapGet("/api/user", UserEndpoint.Handler);
-    endpoints.MapPost("/api/login", LoginEndpoint.Handler);
-    endpoints.MapPost("/api/registry", RegistoryEndpoint.Handler);
-    endpoints.MapGet("/api/logout", LogoutEndpoint.Handler).RequireAuthorization();
+    endpoints.MapControllers();
+    endpoints.MapHealthChecks("/health");
 });
 #pragma warning restore ASP0014
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseSpaStaticFiles();

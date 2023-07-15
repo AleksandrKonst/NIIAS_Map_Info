@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using RZDMapRailwaysApi.Models;
+using RZDMap.Models;
 
-namespace RZDMapRailwaysApi.Data;
+namespace RZDMap.Data;
 
 public partial class GeoNiiasContext : IdentityDbContext<IdentityUser>
 {

@@ -1,19 +1,44 @@
-<div class="register-box">
-    <h1>Register Form</h1>
-    <div class="form-outline mb-4">
-        <input id="form2Example1" class="form-control" [(ngModel)]="username"/>
-        <label class="form-label" for="form2Example1">Login address</label>
-    </div>
-    
-    <div class="form-outline mb-4">
-        <input type="password" id="form2Example2" class="form-control" [(ngModel)]="password"/>
-        <label class="form-label" for="form2Example2">Password</label>
-    </div>
+<div class="row" style="width: 95%; margin-right: auto; margin-left: auto;">
+    <div class="col-md-6 offset-md-3 mt-4">
+        <h3>Регистарция нового пользователя</h3>
+        <form #f="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="registerUsername">Имя пользователя</label>
+                <input type="text" name="username" [(ngModel)]="model.username" required #username="ngModel" class="form-control"
+                       id="registerUsername" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label for="registerEmail">Почта</label>
+                <input type="email" name="email" [(ngModel)]="model.email" required #email="ngModel" class="form-control" id="registerEmail"
+                       placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="registerPassword">Пароль</label>
+                <input type="password" name="password" [(ngModel)]="model.password" required #password="ngModel" class="form-control"
+                       id="registerPassword" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="inputRole">Роль</label>
+                <select id="inputRole" class="form-control">
+                    <option value="" disabled>Choose a role</option>
+                    <option *ngFor="let role of roleOptions" [ngValue]="role">
+                        {{ role }}
+                    </option>
 
-    <div class="form-outline mb-4">
-        <input type="password" id="form2Example3" class="form-control" [(ngModel)]="confirmPassword"/>
-        <label class="form-label" for="form2Example2">Confirm password</label>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputClaim">Отдел</label>
+                <select id="inputClaim" class="form-control">
+                    <option value="" disabled>Choose a Developer Type</option>
+                    <option *ngFor="let type of developerType" [ngValue]="type">
+                        {{ type }}
+                    </option>
+
+                </select>
+            </div>
+            <button type="submit" [disabled]="f.invalid" class="btn btn-danger btn-block mb-4">Register <i class="fas fa-sign-in-alt"></i></button>
+        </form>
     </div>
-    
-    <button (click)="login()" class="btn btn-danger btn-block mb-4">Register in</button>
 </div>
+<app-footer style="position: absolute; bottom: 0px; left: 0px; width: 100%"></app-footer>

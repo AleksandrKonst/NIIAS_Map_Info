@@ -1,6 +1,6 @@
-﻿using RZDMapRailwaysApi.DTO;
+﻿using RZDMap.DTO;
 
-namespace RZDMapRailwaysApi.Services;
+namespace RZDMap.Services;
 
 public interface IStationService
 {

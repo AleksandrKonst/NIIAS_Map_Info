@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AuthService} from "../../Service/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -7,17 +8,16 @@ import {AuthService} from "../../Service/auth.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(public auth: AuthService) {
+  constructor(public auth: AuthService, private router: Router) {
   }
-  
-  username: any;
-  
-  async ngOnInit(){
-    const user = await this.auth.loadUser()
-    this.username = user['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']
-  }
-  
+
   logout() {
-    return this.auth.logoutUser()
+    this.auth.logout();
+    this.router.navigate(['/']);
+  }
+  ngOnInit(){
+    if(this.auth.loggedIn()){
+      this.auth.reload()
+    }
   }
 }

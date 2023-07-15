@@ -20,7 +20,7 @@
             </ul>
             <form class="d-flex">
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="button" class="btn btn-outline-danger" (click)="logout()" *ngIf="auth.loggedIn()">Logout {{username}}</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="logout()" *ngIf="auth.loggedIn()">Logout {{auth.currentUser.email}}</button>
                     <button type="button" class="btn btn-outline-danger" routerLink="/login" *ngIf="!auth.loggedIn()">Войти</button>
                     <button type="button" class="btn btn-outline-secondary" routerLink="/register" *ngIf="!auth.loggedIn()">Регистрация</button>
                 </div>

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using RZDMapRailwaysApi.Data;
-using RZDMapRailwaysApi.DTO;
+using RZDMap.Data;
+using RZDMap.DTO;
 
-namespace RZDMapRailwaysApi.Services;
+namespace RZDMap.Services;
 
 public class StationService : IStationService
 {

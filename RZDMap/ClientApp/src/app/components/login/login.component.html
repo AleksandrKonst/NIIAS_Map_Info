@@ -1,14 +1,23 @@
-<div class="login-box">
-    <h1>Login Form</h1>
-    <div class="form-outline mb-4">
-        <input id="form2Example1" class="form-control" [(ngModel)]="username"/>
-        <label class="form-label" for="form2Example1">Login address</label>
-    </div>
+<div class="row" style="width: 95%; margin-right: auto; margin-left: auto;">
+    <div class="col-md-6 offset-md-3 mt-4">
+        <h3>Вход</h3>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <div class="form-group">
+                <label for="loginUsername">Имя пользователя</label>
+                <input type="text" name="username" ngModel required #username="ngModel" class="form-control" id="loginUsername"
+                       placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Пароль</label>
+                <input type="password" name="password" ngModel required #password="ngModel" class="form-control" id="loginPassword"
+                       placeholder="Password">
+            </div>
 
-    <div class="form-outline mb-4">
-        <input type="password" id="form2Example2" class="form-control" [(ngModel)]="password"/>
-        <label class="form-label" for="form2Example2">Password</label>
-    </div>
+            <div>
+                <button type="submit" [disabled]="f.invalid" class="btn btn-danger btn-block mb-4">Вход <i class="fas fa-sign-in-alt"></i></button>
+            </div>
 
-    <button (click)="login()" class="btn btn-danger btn-block mb-4">Register in</button>
+        </form>
+    </div>
 </div>
+<app-footer style="position: absolute; bottom: 0px; left: 0px; width: 100%"></app-footer>

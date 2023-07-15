@@ -1,49 +1,68 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {firstValueFrom} from "rxjs";
+import {IUser} from "../Model/Auth/IUser";
+import {map, Observable} from "rxjs";
+import {JwtHelperService} from "@auth0/angular-jwt";
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user: any = null;
-  login: boolean = false;
+  baseUrl: string = "api/v1.0/identity";
 
-  constructor(private http: HttpClient) {
+  helper = new JwtHelperService();
+  
+  currentUser: IUser = {
+    username: "",
+    email: "",
+    role: "",
+    jobtitle: "",
+  };
+  
+  constructor(private http: HttpClient) {}
 
+  login(model: any): Observable<IUser> {
+    return this.http.post(this.baseUrl + '/login', model).pipe(
+        map((response: any) => {
+          const decodedToken = this.helper.decodeToken(response.token);
+
+          this.currentUser.username = decodedToken.given_name;
+          this.currentUser.email = decodedToken.email;
+          this.currentUser.jobtitle = decodedToken.JobTitle;
+          this.currentUser.role = decodedToken.role;
+
+          localStorage.setItem('token', response.token);
+          
+          return this.currentUser;
+        })
+    );
+  }
+  
+  logout() {
+      this.currentUser = {
+          username: "",
+          email: "",
+          role: "",
+          jobtitle: "",
+      };
+      localStorage.removeItem('token');
+  }
+  
+  register(model: any) {
+    return this.http.post(this.baseUrl + '/register', model);
   }
 
   loggedIn(): boolean {
-        return this.login;
+     const token = localStorage.getItem('token');
+     return !this.helper.isTokenExpired(token);
   }
-  async loadUser(){
-      const user = await firstValueFrom(
-          this.http.get<any>("/api/user")
-      )
-      if('http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name' in user) {
-          this.user = user
-          this.login = true
-      }
-      return user;
+  
+  reload(){
+      this.currentUser.username = this.helper.decodeToken(localStorage.getItem("token") as any).given_name;
+      this.currentUser.email = this.helper.decodeToken(localStorage.getItem("token") as any).email;
+      this.currentUser.role = this.helper.decodeToken(localStorage.getItem("token") as any).role;
+      this.currentUser.jobtitle = this.helper.decodeToken(localStorage.getItem("token") as any).JobTitle;
   }
-  loginUser(loginForm: any){
-    return this.http.post<any>("/api/login", loginForm, {withCredentials: true})
-        .subscribe(_ => {
-            this.loadUser()
-            window.location.reload();
-        })
-  }
-  registerUser(registerForm: any){
-      return this.http.post<any>("/api/registry", registerForm, {withCredentials: true})
-          .subscribe(_ => {
-              this.loadUser()
-              window.location.reload();
-          })
-  }
-  logoutUser(){
-    return this.http.get("api/logout")
-        .subscribe(_ => {
-            this.user = null
-            window.location.reload();
-        })
+  confirmEmail(model: any) {
+    
   }
 }

@@ -3,7 +3,7 @@ import {DataService} from "../../Service/data.service";
 import {Station} from "../../Model/Station";
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
-import {GeoJSON, GeoJSONOptions} from "leaflet";
+import {AlertService} from "ngx-alerts";
 
 @Component({
   selector: 'app-map',
@@ -14,17 +14,18 @@ export class MapComponent implements OnInit{
   private map: any;
   private stations: Station[] = []
   
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private alertService: AlertService,) { }
 
   loadStations() {
+    this.alertService.danger('Загрузка станций');
     this.dataService
         .getStations()
         .subscribe(data  => {
+          this.alertService.danger('Загрузка станций завершена');
           this.stations = data;
           this.initMap();
           this.addMarkers();
         });
-    
   }
   
   ngOnInit() {

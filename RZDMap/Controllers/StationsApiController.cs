@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using RZDMapRailwaysApi.DTO;
-using RZDMapRailwaysApi.Services;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using RZDMap.DTO;
+using RZDMap.Services;
 
-namespace RZDMapRailwaysApi.Controllers;
+namespace RZDMap.Controllers;
 
 [ApiController]
 [ApiVersion("1.0")]
@@ -17,6 +18,7 @@ public class StationsApiController : ControllerBase
     }
     
     [HttpGet]
+    [Authorize(Roles = "Manager")]
     [Route("get/station/{id}")]
     public async Task<ActionResult<StationDto>> GetByIdStation(int id)
     {
@@ -29,6 +31,7 @@ public class StationsApiController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "Manager")]
     [Route("get/station/osm_id/{id}")]
     public async Task<ActionResult<StationDto>> GetByOsmIdStation(int id)
     {
@@ -42,6 +45,7 @@ public class StationsApiController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Policy = "ManagerDevelopers")]
     [Route("get/stations")]
     public async Task<ActionResult<IEnumerable<StationDto>>> GetAllStations()
     {
@@ -49,6 +53,7 @@ public class StationsApiController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "Manager")]
     [Route("get/stations/{pageSize}")]
     [Route("get/stations/{pageSize}/{page}")]
     public async Task<ActionResult<IEnumerable<StationDto>>> GetPartStations(int pageSize, int page = 0)
@@ -57,6 +62,7 @@ public class StationsApiController : ControllerBase
     }
     
     [HttpGet]
+    [Authorize(Roles = "Manager")]
     [Route("get/station/name/{name}")]
     public async Task<ActionResult<StationDto>> GetByNameStation(string name)
     {
@@ -69,6 +75,7 @@ public class StationsApiController : ControllerBase
     }
     
     [HttpGet]
+    [Authorize(Roles = "Manager")]
     [Route("get/stations/name/{name}")]
     public async Task<ActionResult<IEnumerable<StationDto>>> GetByNameAllStations(string name)
     {
@@ -76,6 +83,7 @@ public class StationsApiController : ControllerBase
     }
     
     [HttpGet]
+    [Authorize(Roles = "Manager")]
     [Route("get/stations/name/{name}/{pageSize}")]
     [Route("get/stations/name/{name}/{pageSize}/{page}")]
     public async Task<ActionResult<IEnumerable<StationDto>>> GetByNamePartStations(string name, int pageSize, int page = 0)
