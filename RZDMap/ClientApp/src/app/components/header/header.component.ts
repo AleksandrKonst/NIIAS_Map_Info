@@ -20,4 +20,15 @@ export class HeaderComponent {
       this.auth.reload()
     }
   }
+  isAdmin(): boolean {
+    return this.auth.currentUser.role == 'Administrator' ? true : false;
+  }
+
+  isManager(): boolean {
+    return this.auth.currentUser.role == 'Manager' ? true : false;
+  }
+
+  isDeveloper(): boolean {
+    return this.auth.currentUser.jobtitle == 'Developer' ? true : false;
+  }
 }

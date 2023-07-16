@@ -11,10 +11,10 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="">Главная</a>
                 </li>
-                <li class="nav-item" *ngIf="auth.loggedIn()">
+                <li class="nav-item" *ngIf="auth.loggedIn() && isManager() && isDeveloper()">
                     <a class="nav-link active" aria-current="page" routerLink="/map">Карта</a>
                 </li>
-                <li class="nav-item" *ngIf="auth.loggedIn()">
+                <li class="nav-item" *ngIf="auth.loggedIn() && isManager() && isDeveloper()">
                     <a class="nav-link active" aria-current="page" routerLink="/route">Участки</a>
                 </li>
             </ul>

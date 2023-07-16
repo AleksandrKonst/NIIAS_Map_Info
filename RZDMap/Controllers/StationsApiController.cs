@@ -18,7 +18,7 @@ public class StationsApiController : ControllerBase
     }
     
     [HttpGet]
-    [Authorize(Roles = "Manager")]
+    [Authorize(Policy = "ManagerDevelopers")]
     [Route("get/station/{id}")]
     public async Task<ActionResult<StationDto>> GetByIdStation(int id)
     {
@@ -31,7 +31,7 @@ public class StationsApiController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize(Roles = "Manager")]
+    [Authorize(Policy = "ManagerDevelopers")]
     [Route("get/station/osm_id/{id}")]
     public async Task<ActionResult<StationDto>> GetByOsmIdStation(int id)
     {
@@ -53,7 +53,7 @@ public class StationsApiController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize(Roles = "Manager")]
+    [Authorize(Policy = "ManagerDevelopers")]
     [Route("get/stations/{pageSize}")]
     [Route("get/stations/{pageSize}/{page}")]
     public async Task<ActionResult<IEnumerable<StationDto>>> GetPartStations(int pageSize, int page = 0)
@@ -62,7 +62,7 @@ public class StationsApiController : ControllerBase
     }
     
     [HttpGet]
-    [Authorize(Roles = "Manager")]
+    [Authorize(Policy = "ManagerDevelopers")]
     [Route("get/station/name/{name}")]
     public async Task<ActionResult<StationDto>> GetByNameStation(string name)
     {
@@ -75,7 +75,7 @@ public class StationsApiController : ControllerBase
     }
     
     [HttpGet]
-    [Authorize(Roles = "Manager")]
+    [Authorize(Policy = "ManagerDevelopers")]
     [Route("get/stations/name/{name}")]
     public async Task<ActionResult<IEnumerable<StationDto>>> GetByNameAllStations(string name)
     {
@@ -83,7 +83,7 @@ public class StationsApiController : ControllerBase
     }
     
     [HttpGet]
-    [Authorize(Roles = "Manager")]
+    [Authorize(Policy = "ManagerDevelopers")]
     [Route("get/stations/name/{name}/{pageSize}")]
     [Route("get/stations/name/{name}/{pageSize}/{page}")]
     public async Task<ActionResult<IEnumerable<StationDto>>> GetByNamePartStations(string name, int pageSize, int page = 0)

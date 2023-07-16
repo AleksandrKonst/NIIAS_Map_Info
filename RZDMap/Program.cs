@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using RZDMap.Data;
 using RZDMap.Services;
+using RZDMap.Services.Email;
 using RZDMap.Services.Token;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,9 +24,10 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
             opt.Password.RequireUppercase = false;
             opt.Password.RequiredLength = 4;
             opt.User.RequireUniqueEmail = true;
+            opt.SignIn.RequireConfirmedEmail = true;
         }
     })
-    .AddEntityFrameworkStores<GeoNiiasContext>();
+    .AddEntityFrameworkStores<GeoNiiasContext>().AddDefaultTokenProviders();
 
 builder.Services.AddAuthentication(cfg =>
 {
@@ -47,12 +49,12 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("ManagerDevelopers", md =>
     {
-        md.RequireClaim("jobtitle", "developer");
+        md.RequireClaim("JobTitle", "Developer");
         md.RequireRole("Manager");
     });
     options.AddPolicy("AdminDevelopers", ad =>
     {
-        ad.RequireClaim("jobtitle", "developer");
+        ad.RequireClaim("JobTitle", "Developer");
         ad.RequireRole("Administrator");
     });
 });
@@ -64,6 +66,7 @@ builder.Services.AddHealthChecks();
 
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddTransient<IStationService, StationService>();
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
 builder.Services.AddSpaStaticFiles(configuration =>
 {

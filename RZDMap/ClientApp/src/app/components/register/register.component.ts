@@ -17,7 +17,7 @@ export class RegisterComponent {
     email: null,
     password: null,
     role: 'Administrator',
-    claim: 'Developer',
+    jobtitle: 'Developer',
   };
   constructor(private alertService: AlertService, 
               private authService: AuthService,
@@ -39,5 +39,13 @@ export class RegisterComponent {
     };
 
     this.authService.register(this.model).subscribe(registerObserver);
+  }
+
+  roleChange(value:any) {
+    this.model.role = value;
+  }
+
+  claimChange(value:any) {
+    this.model.jobtitle = value;
   }
 }

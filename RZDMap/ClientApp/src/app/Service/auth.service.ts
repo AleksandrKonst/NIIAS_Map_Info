@@ -64,6 +64,6 @@ export class AuthService {
       this.currentUser.jobtitle = decodedToken.JobTitle;
   }
   confirmEmail(model: any) {
-    
+      return this.http.post(this.baseUrl + '/confirmemail', model);
   }
 }

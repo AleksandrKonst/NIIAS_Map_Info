@@ -1,7 +1,9 @@
 ﻿using System.Security.Claims;
+using System.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RZDMap.DTO.ViewModels;
+using RZDMap.Services.Email;
 using RZDMap.Services.Token;
 
 namespace RZDMap.Controllers;
@@ -15,16 +17,22 @@ public class IdentityApiController : ControllerBase
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly IJwtTokenGenerator _jwtToken;
     private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly IConfiguration _config;
+    private readonly IEmailSender _emailSender;
 
     public IdentityApiController(UserManager<IdentityUser> userManager, 
         SignInManager<IdentityUser> signInManager, 
         IJwtTokenGenerator jwtToken,
-        RoleManager<IdentityRole> roleManager)
+        RoleManager<IdentityRole> roleManager,
+        IConfiguration config,
+        IEmailSender emailSender)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _jwtToken = jwtToken;
         _roleManager = roleManager;
+        _config = config;
+        _emailSender = emailSender;
     }
 
     [HttpPost]
@@ -78,6 +86,17 @@ public class IdentityApiController : ControllerBase
         if (result.Succeeded)
         {
             var userFromDb = await _userManager.FindByNameAsync(userToCreate.UserName);
+            
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(userFromDb);
+            var uriBuilder = new UriBuilder(_config["ReturnPaths:ConfirmEmail"]);
+            var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+            query["token"] = token;
+            query["userid"] = userFromDb.Id;
+            uriBuilder.Query = query.ToString();
+            var urlString = uriBuilder.ToString();
+            var senderEmail = _config["ReturnPaths:SenderEmail"];
+            await _emailSender.SendEmailAsync(senderEmail, userFromDb.Email, "Confirm your email address", urlString);
+            
             await _userManager.AddToRoleAsync(userFromDb, model.Role);
             
             var claim = new Claim("JobTitle", model.JobTitle);
@@ -92,8 +111,17 @@ public class IdentityApiController : ControllerBase
 
     [HttpPost]
     [Route("confirmemail")]
-    public IActionResult ConfirmEmail(ConfirmEmailViewModel model)
+    public async Task<IActionResult> ConfirmEmail(ConfirmEmailViewModel model)
     {
-        return Ok();
+
+        var user = await _userManager.FindByIdAsync(model.UserId);
+
+        var result = await _userManager.ConfirmEmailAsync(user, model.Token);
+
+        if (result.Succeeded)
+        {
+            return Ok();
+        }
+        return BadRequest();
     }
 }

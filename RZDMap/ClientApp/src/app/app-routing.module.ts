@@ -5,6 +5,7 @@ import {MainPageComponent} from "./components/main-page/main-page.component";
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {StationInfoComponent} from "./components/station-info/station-info.component";
+import {ConfirmEmailComponent} from "./components/confirm-email/confirm-email.component";
 
 const appRoutes: Routes =[
   { path: '', component: MainPageComponent},
@@ -14,7 +15,8 @@ const appRoutes: Routes =[
   { path: 'about', component: MainPageComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'station/:id', component: StationInfoComponent }
+  { path: 'station/:id', component: StationInfoComponent },
+  { path: 'confirmemail', component: ConfirmEmailComponent },
 ];
 
 @NgModule({
