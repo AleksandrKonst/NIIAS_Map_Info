@@ -13,12 +13,12 @@ public class IdentityApiController : ControllerBase
 {
     private readonly UserManager<IdentityUser> _userManager;
     private readonly SignInManager<IdentityUser> _signInManager;
-    private readonly IJWTTokenGenerator _jwtToken;
+    private readonly IJwtTokenGenerator _jwtToken;
     private readonly RoleManager<IdentityRole> _roleManager;
 
     public IdentityApiController(UserManager<IdentityUser> userManager, 
         SignInManager<IdentityUser> signInManager, 
-        IJWTTokenGenerator jwtToken,
+        IJwtTokenGenerator jwtToken,
         RoleManager<IdentityRole> roleManager)
     {
         _userManager = userManager;

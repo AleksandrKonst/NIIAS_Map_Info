@@ -6,11 +6,11 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace RZDMap.Services.Token;
 
-public class JWTTokenGenerator : IJWTTokenGenerator
+public class JwtTokenGenerator : IJwtTokenGenerator
 {
     private readonly IConfiguration _config;
 
-    public JWTTokenGenerator(IConfiguration config)
+    public JwtTokenGenerator(IConfiguration config)
     {
         _config = config;
 

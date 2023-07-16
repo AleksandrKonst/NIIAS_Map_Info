@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using RZDMap.DTO;
 using RZDMap.Models;
 
-namespace RZDMapRailwaysApi.DTO.AutoMapperProfiles;
+namespace RZDMap.DTO.AutoMapperProfiles;
 
 public class StationDtoProfile : Profile
 {

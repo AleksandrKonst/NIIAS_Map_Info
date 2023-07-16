@@ -62,7 +62,7 @@ builder.Services.AddApiVersioning();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHealthChecks();
 
-builder.Services.AddScoped<IJWTTokenGenerator, JWTTokenGenerator>();
+builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddTransient<IStationService, StationService>();
 
 builder.Services.AddSpaStaticFiles(configuration =>
@@ -73,9 +73,9 @@ builder.Services.AddSpaStaticFiles(configuration =>
 var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseStaticFiles();
 
 #pragma warning disable ASP0014
 app.UseEndpoints(endpoints =>

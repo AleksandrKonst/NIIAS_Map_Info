@@ -1,6 +1,6 @@
 ﻿namespace RZDMap.Models;
 
-public partial class Station
+public class Station
 {
     public int Esr { get; set; }
 

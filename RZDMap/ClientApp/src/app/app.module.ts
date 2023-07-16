@@ -1,4 +1,4 @@
-import {NgModule, OnInit} from '@angular/core';
+import {NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { AppComponent }   from './app.component';
@@ -16,7 +16,8 @@ import { StationInfoComponent } from './components/station-info/station-info.com
 @NgModule({
     imports:      [ BrowserModule, FormsModule, HttpClientModule, AppRoutingModule,  BrowserAnimationsModule
         , AlertModule.forRoot({maxMessages: 2, timeout: 3000, positionX: 'right'})],
-    declarations: [ AppComponent, HeaderComponent, MapComponent, FooterComponent, MainPageComponent, LoginComponent, RegisterComponent, StationInfoComponent ],
+    declarations: [ AppComponent, HeaderComponent, MapComponent, FooterComponent, 
+        MainPageComponent, LoginComponent, RegisterComponent, StationInfoComponent ],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule {}

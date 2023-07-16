@@ -57,10 +57,11 @@ export class AuthService {
   }
   
   reload(){
-      this.currentUser.username = this.helper.decodeToken(localStorage.getItem("token") as any).given_name;
-      this.currentUser.email = this.helper.decodeToken(localStorage.getItem("token") as any).email;
-      this.currentUser.role = this.helper.decodeToken(localStorage.getItem("token") as any).role;
-      this.currentUser.jobtitle = this.helper.decodeToken(localStorage.getItem("token") as any).JobTitle;
+      const decodedToken = this.helper.decodeToken(localStorage.getItem("token" ) as any);
+      this.currentUser.username = decodedToken.given_name;
+      this.currentUser.email = decodedToken.email;
+      this.currentUser.role = decodedToken.role;
+      this.currentUser.jobtitle = decodedToken.JobTitle;
   }
   confirmEmail(model: any) {
     

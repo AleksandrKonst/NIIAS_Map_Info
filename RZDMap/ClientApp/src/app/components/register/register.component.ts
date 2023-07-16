@@ -9,8 +9,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  roleOptions: string[] = ['Administrator', 'Manager'];
-  developerType: string[] = ['Developer', 'Designer'];
+  roleOptions: string[] = ['Administrator', 'Manager', 'NoRole'];
+  developerType: string[] = ['Developer', 'Employee'];
 
   model: any = {
     username: null,

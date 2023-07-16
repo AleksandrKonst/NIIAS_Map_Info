@@ -20,7 +20,6 @@ export class StationInfoComponent {
             }
         );
    }
-   
    ngOnInit() {
        this.routeSub = this.route.params.subscribe(params => {
            this.loadStations(params['id'])

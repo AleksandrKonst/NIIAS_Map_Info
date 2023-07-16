@@ -35,6 +35,4 @@ public partial class GeoNiiasContext : IdentityDbContext<IdentityUser>
 
         base.OnModelCreating(modelBuilder);
     }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

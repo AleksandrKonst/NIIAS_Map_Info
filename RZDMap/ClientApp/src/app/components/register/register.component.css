@@ -2,3 +2,22 @@
     margin-top: 10px;
     margin-bottom: 20px;
 }
+
+.register {
+    width: 95%; 
+    margin-right: auto; 
+    margin-left: auto;
+}
+
+.footer {
+    position: absolute; 
+    bottom: 0px; 
+    left: 0px; 
+    width: 100%
+}
+
+@media screen and (max-height: 750px){
+    .footer {
+        display: none;
+    }
+}

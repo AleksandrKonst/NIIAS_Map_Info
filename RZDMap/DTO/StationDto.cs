@@ -10,10 +10,13 @@ public class StationDto
     [Required]
     public long OsmId { get; set; }
     
+    [Required]
     public double Lat { get; set; }
     
+    [Required]
     public double Lon { get; set; }
     
+    [Required]
     public string Name { get; set; }
 
     public int? User { get; set; }
