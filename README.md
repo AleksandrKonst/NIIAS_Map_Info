@@ -1,5 +1,5 @@
 # NIIAS_Map_Info
-Информационная карта для НИИАС
+Информационная карта для практики в НИИАС
 ## Главная страница
 ![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/28261c94-c95e-4b71-b99e-11f49ecd7c79)
 ## Карта
