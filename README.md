@@ -1,14 +1,14 @@
 # NIIAS_Map_Info
 Информационная карта для практики в НИИАС
 ## Главная страница
-![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/28261c94-c95e-4b71-b99e-11f49ecd7c79)
+![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/539271a0-e3ec-4f9d-99d8-96d23f81434e)
 ## Карта
-![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/0ca8506f-472e-4938-91bf-aa64b2bfda82)
+![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/726a96ab-0068-4a91-9680-9a3f2893c31c)
 ## Информация о станции
-![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/b1e12beb-840a-4f90-ac3c-ce3379f9f9f5)
+![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/7883a26f-bc4d-4323-b9b5-d45b5fac89eb)
 ## Аунтификация и Регистрация
-![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/eaa1a174-0ca4-4339-a246-90f9585af3a9)
+![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/14ac6eae-6df3-4908-930e-32ca044a49ec)
 
-![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/d1560fa9-dedb-4253-be26-db9eb0eba063)
+![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/b878eeae-a30d-4321-b802-a63781d2ff54)
 ## Подтверждение почты
-![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/3ba6103c-62a5-40a5-be0d-0810eabc8fd6)
+![image](https://github.com/AleksandrKonst/NIIAS_Map_Info/assets/40522320/29dc05f1-7d78-45a3-ae9b-e84087be82c6)
