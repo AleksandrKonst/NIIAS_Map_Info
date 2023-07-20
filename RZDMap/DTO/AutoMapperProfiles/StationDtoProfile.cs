@@ -8,5 +8,6 @@ public class StationDtoProfile : Profile
     public StationDtoProfile()
     {
         CreateMap<Station, StationDto>().ReverseMap();
+        CreateMap<StationLine, MapLineDTO>().ReverseMap();
     }
 }

@@ -1,6 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Station} from "../Model/Station";
+import {MapLine} from "../Model/MapLine";
 
 @Injectable({providedIn: 'root'})
 export class DataService {
@@ -12,6 +13,11 @@ export class DataService {
 
     getStations() {
         return this.http.get<Station[]>(this.url + '/stations',
+            this.getHttpOptions());
+    }
+
+    getMapLines() {
+        return this.http.get<MapLine[]>(this.url + '/maplines',
             this.getHttpOptions());
     }
 

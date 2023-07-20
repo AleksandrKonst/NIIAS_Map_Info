@@ -1,16 +1,17 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using RZDMap.Data;
+
 using RZDMap.DTO;
+using RZDMap.Models;
 
 namespace RZDMap.Services;
 
 public class StationService : IStationService
 {
     private readonly IMapper _mapper;
-    private readonly GeoNiiasContext _context;
+    private readonly PostgresContext _context;
 
-    public StationService(IMapper mapper, GeoNiiasContext context)
+    public StationService(IMapper mapper, PostgresContext context)
     {
         _mapper = mapper;
         _context = context;
@@ -18,7 +19,8 @@ public class StationService : IStationService
     
     public async Task<StationDto> GetStationAsync(int id)
     {
-        return _mapper.Map<StationDto>(await _context.Stations.FindAsync(id));
+        return _mapper.Map<StationDto>(await _context.Stations.Where(st => st.Esr == id)
+            .FirstOrDefaultAsync());
     }
 
     public async Task<StationDto> GetByOsmIdStationAsync(int id)

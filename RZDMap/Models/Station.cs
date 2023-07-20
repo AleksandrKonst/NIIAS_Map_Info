@@ -1,7 +1,12 @@
-﻿namespace RZDMap.Models;
+﻿using System;
+using System.Collections.Generic;
 
-public class Station
+namespace RZDMap.Models;
+
+public partial class Station
 {
+    public int Id { get; set; }
+
     public int Esr { get; set; }
 
     public long OsmId { get; set; }
@@ -10,7 +15,5 @@ public class Station
 
     public double? Lon { get; set; }
 
-    public string Name { get; set; }
-
-    public int? User { get; set; }
+    public string Name { get; set; } = null!;
 }

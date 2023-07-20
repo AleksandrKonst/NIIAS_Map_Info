@@ -4,14 +4,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using RZDMap.Data;
+using RZDMap.Models;
 using RZDMap.Services;
 using RZDMap.Services.Email;
 using RZDMap.Services.Token;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<GeoNiiasContext>(options =>
+builder.Services.AddDbContext<PostgresContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("TicketContext")));
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -27,7 +27,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
             opt.SignIn.RequireConfirmedEmail = true;
         }
     })
-    .AddEntityFrameworkStores<GeoNiiasContext>().AddDefaultTokenProviders();
+    .AddEntityFrameworkStores<PostgresContext>().AddDefaultTokenProviders();
 
 builder.Services.AddAuthentication(cfg =>
 {
@@ -66,6 +66,7 @@ builder.Services.AddHealthChecks();
 
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddTransient<IStationService, StationService>();
+builder.Services.AddTransient<IMapLineService, MapLineService>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
 builder.Services.AddSpaStaticFiles(configuration =>

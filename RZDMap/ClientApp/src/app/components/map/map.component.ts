@@ -5,6 +5,8 @@ import {Station} from "../../Model/Station";
 import {Router} from "@angular/router";
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
+import {LatLngExpression} from "leaflet";
+import {MapLine} from "../../Model/MapLine";
 
 @Component({
   selector: 'app-map',
@@ -14,6 +16,7 @@ import 'leaflet.markercluster';
 export class MapComponent implements OnInit{
   private map: any;
   private stations: Station[] = []
+  private lines: MapLine[] = []
   
   constructor(private dataService: DataService, private alertService: AlertService, 
               private elementRef: ElementRef, private router: Router) { }
@@ -27,6 +30,16 @@ export class MapComponent implements OnInit{
           this.stations = data;
           this.initMap();
           this.addMarkers();
+          this.loadMapLines();
+        });
+  }
+
+  loadMapLines() {
+    this.dataService
+        .getMapLines()
+        .subscribe(data  => {
+          this.lines = data;
+          this.addLine()
         });
   }
   
@@ -44,7 +57,8 @@ export class MapComponent implements OnInit{
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '©OpenStreetMap',
       maxZoom: 18,
-      minZoom:4
+      minZoom:4,
+      className: "test"
     }).addTo(this.map);
   }
 
@@ -106,6 +120,29 @@ export class MapComponent implements OnInit{
       markers.addLayer(marker);
     });
     this.map.addLayer(markers)
+  }
+
+  private addLine(): void {
+    var ways :LatLngExpression[][] = []
+    this.lines.forEach(line => {
+      var way :LatLngExpression[] = [new L.LatLng(line.latSt1, line.lonSt1), new L.LatLng(line.latSt2, line.lonSt2)];
+      ways.push(way);
+    });
+    var polyline = new L.Polyline(ways, {
+      color: 'crimson',
+      weight: 3,
+      opacity: 1,
+      smoothFactor: 1
+    });
+
+    var lineGroup = L.layerGroup([polyline]);
+    
+    var baseMaps = {};
+    var overlayMaps = {
+      "ЖД": lineGroup
+    };
+    
+    var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(this.map)
   }
   infoStation(esr:number) {
     this.router.navigate(['/station/' + esr]);

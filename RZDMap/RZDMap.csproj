@@ -33,7 +33,7 @@
 
     <ItemGroup>
       <Folder Include="ClientApp\src\app\components\" />
-      <Folder Include="Data\Migrations\" />
+      <Folder Include="Models\" />
     </ItemGroup>
 
 </Project>
