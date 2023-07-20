@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using RZDMap.Data;
 using RZDMap.DTO;
-using RZDMap.Models;
 
 namespace RZDMap.Services;
 
 public class MapLineService : IMapLineService
 {
     private readonly IMapper _mapper;
-    private readonly PostgresContext _context;
+    private readonly GeoNiiasContext _context;
 
-    public MapLineService(IMapper mapper, PostgresContext context)
+    public MapLineService(IMapper mapper, GeoNiiasContext context)
     {
         _mapper = mapper;
         _context = context;

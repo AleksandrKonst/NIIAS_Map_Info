@@ -4,14 +4,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using RZDMap.Models;
+using RZDMap.Data;
 using RZDMap.Services;
 using RZDMap.Services.Email;
 using RZDMap.Services.Token;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<PostgresContext>(options =>
+builder.Services.AddDbContext<GeoNiiasContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("TicketContext")));
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -27,7 +27,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
             opt.SignIn.RequireConfirmedEmail = true;
         }
     })
-    .AddEntityFrameworkStores<PostgresContext>().AddDefaultTokenProviders();
+    .AddEntityFrameworkStores<GeoNiiasContext>().AddDefaultTokenProviders();
 
 builder.Services.AddAuthentication(cfg =>
 {

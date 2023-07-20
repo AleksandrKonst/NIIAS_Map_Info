@@ -5,13 +5,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using RZDMap.Data;
 using RZDMap.Models;
 
 #nullable disable
 
 namespace RZDMap.Migrations
 {
-    [DbContext(typeof(PostgresContext))]
+    [DbContext(typeof(GeoNiiasContext))]
     [Migration("20230719150447_identity")]
     partial class identity
     {

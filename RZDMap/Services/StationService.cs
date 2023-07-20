@@ -1,17 +1,16 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-
+using RZDMap.Data;
 using RZDMap.DTO;
-using RZDMap.Models;
 
 namespace RZDMap.Services;
 
 public class StationService : IStationService
 {
     private readonly IMapper _mapper;
-    private readonly PostgresContext _context;
+    private readonly GeoNiiasContext _context;
 
-    public StationService(IMapper mapper, PostgresContext context)
+    public StationService(IMapper mapper, GeoNiiasContext context)
     {
         _mapper = mapper;
         _context = context;

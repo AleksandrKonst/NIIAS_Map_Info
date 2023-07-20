@@ -4,13 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using RZDMap.Data;
 using RZDMap.Models;
 
 #nullable disable
 
 namespace RZDMap.Migrations
 {
-    [DbContext(typeof(PostgresContext))]
+    [DbContext(typeof(GeoNiiasContext))]
     partial class PostgresContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

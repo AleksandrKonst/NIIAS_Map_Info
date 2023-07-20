@@ -4,6 +4,5 @@
         public osmId: number,
         public lat: number,
         public lon: number,
-        public name: string,
-        public user?: number) { }
+        public name: string) { }
 }

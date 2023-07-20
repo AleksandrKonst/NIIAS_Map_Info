@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using RZDMap.Models;
 
-namespace RZDMap.Models;
+namespace RZDMap.Data;
 
-public partial class PostgresContext : IdentityDbContext<IdentityUser>
+public partial class GeoNiiasContext : IdentityDbContext<IdentityUser>
 {
-    public PostgresContext()
+    public GeoNiiasContext()
     {
     }
 
-    public PostgresContext(DbContextOptions<PostgresContext> options)
+    public GeoNiiasContext(DbContextOptions<GeoNiiasContext> options)
         : base(options)
     {
     }

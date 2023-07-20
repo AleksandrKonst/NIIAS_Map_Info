@@ -1,12 +1,12 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {AlertService} from "ngx-alerts";
 import {DataService} from "../../Service/data.service";
+import {MapLine} from "../../Model/MapLine";
 import {Station} from "../../Model/Station";
 import {Router} from "@angular/router";
+import {LatLngExpression} from "leaflet";
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
-import {LatLngExpression} from "leaflet";
-import {MapLine} from "../../Model/MapLine";
 
 @Component({
   selector: 'app-map',
@@ -97,7 +97,6 @@ export class MapComponent implements OnInit{
         <p>ID OSM - ${station.osmId}</p>
         <p>Широта - ${station.lat}</p>
         <p>Долгота - ${station.lon}</p>
-        <p>user - ${station.user}</p>
         <button type="button" class="btn btn-danger info">Инфо</button>
         <button type="button" class="btn btn-secondary route">Маршруты</button>
       `;
@@ -130,7 +129,7 @@ export class MapComponent implements OnInit{
     });
     var polyline = new L.Polyline(ways, {
       color: 'crimson',
-      weight: 3,
+      weight: 2,
       opacity: 1,
       smoothFactor: 1
     });
@@ -139,7 +138,7 @@ export class MapComponent implements OnInit{
     
     var baseMaps = {};
     var overlayMaps = {
-      "ЖД": lineGroup
+      "ЖД пути": lineGroup
     };
     
     var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(this.map)
