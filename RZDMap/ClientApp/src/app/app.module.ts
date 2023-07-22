@@ -14,11 +14,12 @@ import {AlertModule} from "ngx-alerts";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { StationInfoComponent } from './components/station-info/station-info.component';
 import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
+import { LineInfoComponent } from './components/line-info/line-info.component';
 @NgModule({
     imports:      [ BrowserModule, FormsModule, HttpClientModule, AppRoutingModule,  BrowserAnimationsModule
         , AlertModule.forRoot({maxMessages: 2, timeout: 3000, positionX: 'right'})],
     declarations: [ AppComponent, HeaderComponent, MapComponent, FooterComponent, 
-        MainPageComponent, LoginComponent, RegisterComponent, StationInfoComponent, ConfirmEmailComponent ],
+        MainPageComponent, LoginComponent, RegisterComponent, StationInfoComponent, ConfirmEmailComponent, LineInfoComponent ],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule {}

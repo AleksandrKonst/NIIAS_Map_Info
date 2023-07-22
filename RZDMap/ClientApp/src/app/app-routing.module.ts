@@ -6,6 +6,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {StationInfoComponent} from "./components/station-info/station-info.component";
 import {ConfirmEmailComponent} from "./components/confirm-email/confirm-email.component";
+import {LineInfoComponent} from "./components/line-info/line-info.component";
 
 const appRoutes: Routes =[
   { path: '', component: MainPageComponent},
@@ -16,6 +17,7 @@ const appRoutes: Routes =[
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'station/:id', component: StationInfoComponent },
+  { path: 'line/:stOneId/:stTwoId', component: LineInfoComponent },
   { path: 'confirmemail', component: ConfirmEmailComponent },
 ];
 

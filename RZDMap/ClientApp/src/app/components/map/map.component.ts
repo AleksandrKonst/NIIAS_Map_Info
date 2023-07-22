@@ -122,19 +122,41 @@ export class MapComponent implements OnInit{
   }
 
   private addLine(): void {
-    var ways :LatLngExpression[][] = []
+    var ways: L.Polyline[]  = []
     this.lines.forEach(line => {
       var way :LatLngExpression[] = [new L.LatLng(line.latSt1, line.lonSt1), new L.LatLng(line.latSt2, line.lonSt2)];
-      ways.push(way);
-    });
-    var polyline = new L.Polyline(ways, {
-      color: 'crimson',
-      weight: 2,
-      opacity: 1,
-      smoothFactor: 1
-    });
+      var polyline = new L.Polyline(way, {
+        color: 'crimson',
+        weight: 6,
+        opacity: 1,
+        smoothFactor: 1
+      });
 
-    var lineGroup = L.layerGroup([polyline]);
+      const popupContent = `
+        <h3>Перегон ${line.stan1Id} - ${line.stan2Id}</h3>
+        <p>ID Ст1 - ${line.stan1Id}</p>
+        <p>Широта Ст1 - ${line.latSt1}</p>
+        <p>Долгота Ст1 - ${line.lonSt1}</p>
+        <p>ID Ст2 - ${line.stan2Id}</p>
+        <p>Широта Ст2 - ${line.latSt2}</p>
+        <p>Долгота Ст2 - ${line.lonSt2}</p>
+        <button type="button" class="btn btn-danger infoLine">Инфо</button>
+      `;
+
+        polyline.bindPopup(popupContent)
+          .on("popupopen", e => {
+            this.elementRef.nativeElement
+                .querySelector(".infoLine")
+                .addEventListener("click", () => {
+                  this.infoLine(line.stan1Id, line.stan2Id);
+                });
+          });
+      
+      ways.push(polyline);
+    });
+    
+
+    var lineGroup = L.layerGroup(ways);
     
     var baseMaps = {};
     var overlayMaps = {
@@ -143,10 +165,12 @@ export class MapComponent implements OnInit{
     
     var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(this.map)
   }
-  infoStation(esr:number) {
+  infoStation(esr: number) {
     this.router.navigate(['/station/' + esr]);
   }
-
+  private infoLine(stan1Id: number, stan2Id: number) {
+     this.router.navigate(['/line/' + stan1Id + '/' +stan2Id]);
+  }
   private addRoute(esr: number) {
     alert(esr);
   }
