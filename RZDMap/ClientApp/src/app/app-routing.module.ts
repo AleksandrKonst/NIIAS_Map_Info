@@ -7,11 +7,17 @@ import {RegisterComponent} from "./components/register/register.component";
 import {StationInfoComponent} from "./components/station-info/station-info.component";
 import {ConfirmEmailComponent} from "./components/confirm-email/confirm-email.component";
 import {LineInfoComponent} from "./components/line-info/line-info.component";
+import {ChartComponent} from "./components/chart/chart.component";
+import {PeregLossChartComponent} from "./components/pereg-loss-chart/pereg-loss-chart.component";
+import {SchemaChartComponent} from "./components/schema-chart/schema-chart.component";
 
 const appRoutes: Routes =[
   { path: '', component: MainPageComponent},
   { path: 'map', component: MapComponent},
   { path: 'route', component: MapComponent},
+  { path: 'status/station', component: ChartComponent},
+  { path: 'status/rout', component: PeregLossChartComponent},
+  { path: 'status/problem', component: SchemaChartComponent},
   { path: 'privacy', component: MainPageComponent},
   { path: 'about', component: MainPageComponent},
   { path: 'login', component: LoginComponent},

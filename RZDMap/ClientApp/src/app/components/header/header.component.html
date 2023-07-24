@@ -15,7 +15,16 @@
                     <a class="nav-link active" aria-current="page" routerLink="/map">Карта</a>
                 </li>
                 <li class="nav-item" *ngIf="auth.loggedIn() && isManager() && isDeveloper()">
-                    <a class="nav-link active" aria-current="page" routerLink="/route">Участки</a>
+                    <a class="nav-link active" aria-current="page" routerLink="/route">Перегоны</a>
+                </li>
+                <li class="nav-item" *ngIf="auth.loggedIn() && isManager() && isDeveloper()">
+                    <a class="nav-link active" aria-current="page" routerLink="/status/station">График станций</a>
+                </li>
+                <li class="nav-item" *ngIf="auth.loggedIn() && isManager() && isDeveloper()">
+                    <a class="nav-link active" aria-current="page" routerLink="/status/rout">График перегонов</a>
+                </li>
+                <li class="nav-item" *ngIf="auth.loggedIn() && isManager() && isDeveloper()">
+                    <a class="nav-link active" aria-current="page" routerLink="/status/problem">Даиграмма работ</a>
                 </li>
             </ul>
             <form class="d-flex">

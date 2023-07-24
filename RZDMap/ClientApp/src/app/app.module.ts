@@ -15,11 +15,15 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { StationInfoComponent } from './components/station-info/station-info.component';
 import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
 import { LineInfoComponent } from './components/line-info/line-info.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { SchemaChartComponent } from './components/schema-chart/schema-chart.component';
+import { PeregLossChartComponent } from './components/pereg-loss-chart/pereg-loss-chart.component';
 @NgModule({
     imports:      [ BrowserModule, FormsModule, HttpClientModule, AppRoutingModule,  BrowserAnimationsModule
         , AlertModule.forRoot({maxMessages: 2, timeout: 3000, positionX: 'right'})],
     declarations: [ AppComponent, HeaderComponent, MapComponent, FooterComponent, 
-        MainPageComponent, LoginComponent, RegisterComponent, StationInfoComponent, ConfirmEmailComponent, LineInfoComponent ],
+        MainPageComponent, LoginComponent, RegisterComponent, StationInfoComponent, ConfirmEmailComponent, 
+        LineInfoComponent, ChartComponent, SchemaChartComponent, PeregLossChartComponent, ],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule {}

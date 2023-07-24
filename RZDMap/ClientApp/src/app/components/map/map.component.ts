@@ -98,7 +98,6 @@ export class MapComponent implements OnInit{
         <p>Широта - ${station.lat}</p>
         <p>Долгота - ${station.lon}</p>
         <button type="button" class="btn btn-danger info">Инфо</button>
-        <button type="button" class="btn btn-secondary route">Маршруты</button>
       `;
 
       marker.bindPopup(popupContent)
@@ -107,13 +106,6 @@ export class MapComponent implements OnInit{
               .querySelector(".info")
               .addEventListener("click", () => {
                 this.infoStation(station.esr);
-              });
-          })
-          .on("popupopen", e => {
-              this.elementRef.nativeElement
-                 .querySelector(".route")
-                 .addEventListener("click", () => {
-                   this.addRoute(station.esr);
               });
           });
       markers.addLayer(marker);

@@ -1,0 +1,23 @@
+#tranLossContainer {
+    margin: 20px;
+}
+#tranLossChart {
+    margin: 20px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%
+}
+
+.tranLossContainer {
+    margin: 40px auto 0 auto;
+}
+
+@media screen and (max-height: 650px){
+    .footer {
+        position: static;
+    }
+}
