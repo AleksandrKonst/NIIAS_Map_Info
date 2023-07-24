@@ -10,7 +10,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import {AlertModule} from "ngx-alerts";
+import { AlertModule } from '@full-fledged/alerts';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { StationInfoComponent } from './components/station-info/station-info.component';
 import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';

@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
-import {AlertService} from "ngx-alerts";
+import {AlertService} from "@full-fledged/alerts";
 import {DataService} from "../../Service/data.service";
 import {MapLine} from "../../Model/MapLine";
 import {Station} from "../../Model/Station";

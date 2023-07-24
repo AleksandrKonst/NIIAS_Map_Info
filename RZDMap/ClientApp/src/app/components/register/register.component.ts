@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {AuthService} from "../../Service/auth.service";
-import { AlertService } from 'ngx-alerts';
+import { AlertService } from '@full-fledged/alerts';
 import {Router} from "@angular/router";
 
 @Component({
